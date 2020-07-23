@@ -1,0 +1,83 @@
+<?php 
+// Delete .example from this files name and
+// Change DB_OPTIONS to your database options
+    return [
+        "DB_OPTIONS" => [
+            "host" => "localhost",
+            "database" => "blog",
+            "username" => "root",
+            "password" => "",
+            "charset" => "utf8",
+            "options" => [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES   => false
+            ]
+        ],
+        "ROUTES" => [
+            ["/", "MainController@index"],
+            ["/aboutme","MainController@aboutme"],
+            ["/contact", "MainController@contact"],
+            ["/sendContact", "MainController@sendContact","post"],
+            ["/page/{id}", "MainController@index","get"],
+            ["/article/{url}", "ArticleController@index","get"],
+            ["/articleControl", "ArticleController@_action","post"],
+            ["/login", "LoginController@index"],
+            ["/login", "LoginController@_login", "post"],
+            ["/register", "RegisterController@index"],
+            ["/register", "RegisterController@_register", "post"],
+            ["/sign-out", "LoginController@signout"],
+            ["/managearticles", "ArticleManagerController@index"],
+            ["/managearticles/add", "ArticleManagerController@addView"],
+            ["/managearticles/add", "ArticleManagerController@_addArticle","post"],
+            ["/managearticles/edit", "ArticleManagerController@_editArticle", "post"],
+            ["/managearticles/delete/{url}", "ArticleManagerController@deletePost", "get"],
+            ["/managearticles/edit/{url}", "ArticleManagerController@editView", "get"],
+            ["/managearticles/uploadImage", "ArticleManagerController@uploadImage", "post"],
+            ["/test", "Test@index"]
+        ],
+        "REGISTER_CONTROL" => [
+            "name" => [
+                "text"=>"Ad",
+                "min"=>3,
+                "max"=>32,
+            ],
+            "surname" => [
+                "text"=>"Soyad",
+                "min"=>3,
+                "max"=>32
+            ],
+            "username" => [
+                "text"=>"Kullanıcı Adı",
+                "min"=>3,
+                "max"=>18
+            ],
+            "email" => [
+                "text"=>"E-Posta",
+                "min"=>3,
+                "max"=>32
+            ],
+            "password" => [
+                "text"=>"Şifre",
+                "min"=>6,
+                "max"=>32
+            ],
+            "password_again" => false, 
+            "token" => false
+        ],
+        "LOGIN_CONTROL"=>[
+            "email" => [
+                "text"=>"E-Posta",
+                "min"=>3,
+                "max"=>32
+            ],
+            "password" => [
+                "text"=>"Şifre",
+                "min"=>6,
+                "max"=>32
+            ],
+            "token" => false
+        ]
+    ];
+
+?>

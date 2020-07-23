@@ -1,0 +1,16 @@
+# 404 sayfası
+#ErrorDocument 404 ${HTTP}
+
+ErrorDocument 403 https://%{HTTP_HOST}
+ErrorDocument 404 https://%{HTTP_HOST}
+
+
+RewriteEngine on
+
+RewriteRule ^([0-9a-zA-Z-_/]+)$ index.php [QSA]
+
+RewriteCond $1 ^\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$|^(?!index).{1,20}\..php$
+RewriteRule ^(.*)$ https://%{HTTP_HOST} [L,F]
+
+Options All -Indexes
+IndexIgnore *
